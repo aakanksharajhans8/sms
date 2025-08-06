@@ -3,6 +3,7 @@ package com.cams.sms.controller;
 import com.cams.sms.dto.Stock;
 import com.cams.sms.service.StockService;
 import com.cams.sms.service.StockServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class StockController {
     }
 
     @PostMapping("/stocks")
-    public Stock createPost(@RequestBody Stock stock){
+    public Stock createPost(@Valid @RequestBody Stock stock){
         //connect to StockService
         //StockServiceImpl stockService = new StockServiceImpl();
         Stock s = stockService.addPost(stock);
@@ -38,5 +39,10 @@ public class StockController {
     @PutMapping("/stocks")
     public Stock updateStocks(@RequestBody Stock stock){
         return stockService.updateStock(stock);
+    }
+
+    @DeleteMapping("/stocks")
+    public Stock deleteStocks(@RequestBody int stockId){
+        return stockService.deleteStock(stockId);
     }
 }

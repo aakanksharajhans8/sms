@@ -50,4 +50,15 @@ public class StockServiceImpl implements StockService{
         return null; //throw StockUpdateFailedException
     }
 
+    @Override
+    public Stock deleteStock(int stockId) {
+        Optional<Stock> optionalStock = stockRepository.findById(stockId);
+        if (optionalStock.isPresent()) {
+            Stock s = optionalStock.get();
+            stockRepository.delete(s);
+            return s;
+        }
+        return null; // Or throw StockIdDoesNotExistException
+    }
+
 }

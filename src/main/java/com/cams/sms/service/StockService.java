@@ -9,4 +9,5 @@ public interface StockService {
     public List<Stock> getAllStocks();
     public Stock getStockById(int stockId);
     public Stock updateStock(Stock stock);
+    public Stock deleteStock(int stockId);
 }
